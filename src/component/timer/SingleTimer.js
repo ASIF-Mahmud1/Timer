@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux'
-import { createTimer, editTimer, deleteTimer } from '../../stores/features/timer.slice'
+import { createTimer, deleteTimer } from '../../stores/features/timer.slice'
 import {formatTime} from '../../utils/helper'
 const  SingleTimer = ({ details }) => {
     const [values, setValues] = useState({
