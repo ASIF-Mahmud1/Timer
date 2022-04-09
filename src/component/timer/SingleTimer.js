@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Text, View, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux'
 import { createTimer, editTimer, deleteTimer } from '../../stores/features/timer.slice'
-
+import {formatTime} from '../../utils/helper'
 const  SingleTimer = ({ details }) => {
     const [values, setValues] = useState({
         ...details
@@ -35,7 +35,7 @@ const  SingleTimer = ({ details }) => {
         const newIntervalId = setInterval(() => {
 
             setCount((count)=> count+1)
-        }, 1000);
+        }, 1);
 
         setIntervalId(newIntervalId)
 
@@ -47,6 +47,12 @@ const  SingleTimer = ({ details }) => {
         clearInterval(intervalId);
         setIntervalId(0)
     }
+
+    const hour= Math.floor(count/(60*60))
+    const min= Math.floor((count/(60))%60)
+    const sec= count%60
+
+
     return (
         <View>
 
@@ -72,10 +78,9 @@ const  SingleTimer = ({ details }) => {
                     </View>
                     :
                     <View>
-                      
-                        <Text>Title: {details.title}</Text>
                         <Text>Project: {details.project}</Text>
-                        <Text>Timer{count}</Text>
+                        <Text>Title: {details.title}</Text>
+                        <Text style={{textAlign:'center', fontSize:40, fontWeight:'bold'}} >{formatTime(hour)}:{formatTime(min)}:{formatTime(sec)}</Text>
                         <View style={{justifyContent:'center',borderWidth:2}}> 
                         <TouchableOpacity onPress={handleClick} style={{ width: "100%", height: 50, borderColor: 'blue', borderWidth: 2, justifyContent: 'center', alignItems: 'center' }} >
                                 <Text>
