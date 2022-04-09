@@ -9,6 +9,7 @@ export const timerSlice = createSlice({
   reducers: {
 
     addTimer:  (state, action) => {
+      console.log("slice");
     
        state.timerList =[...state.timerList,action.payload]  },
   }

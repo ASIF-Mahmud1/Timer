@@ -6,4 +6,8 @@ export const store = configureStore({
     reducer: {
       timer: timerReducer,
     },
+    middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
   });
