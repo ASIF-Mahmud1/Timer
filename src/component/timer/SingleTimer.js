@@ -54,7 +54,7 @@ const  SingleTimer = ({ details }) => {
 
 
     return (
-        <View>
+        <View style={{marginVertical:20,padding:30,borderRadius:15, backgroundColor:'white'}}>
 
             {
                 details.created === false ?
@@ -82,24 +82,25 @@ const  SingleTimer = ({ details }) => {
                         <Text>Title: {details.title}</Text>
                         <Text style={{textAlign:'center', fontSize:40, fontWeight:'bold'}} >{formatTime(hour)}:{formatTime(min)}:{formatTime(sec)}</Text>
                         <View style={{justifyContent:'center',borderWidth:2}}> 
-                        <TouchableOpacity onPress={handleClick} style={{ width: "100%", height: 50, borderColor: 'blue', borderWidth: 2, justifyContent: 'center', alignItems: 'center' }} >
-                                <Text>
-                                    { intervalId===0? "Start" : "Stop"}
-                                </Text>
-                            </TouchableOpacity>
-                        <View style={{ flexDirection: 'row', justifyContent:'center' }}>
+                   
+                        <View style={{ flexDirection: 'row', justifyContent:'flex-end' ,width:300}}>
                             
-                            <TouchableOpacity onPress={handleDeleteTimer} style={{ width: 100, height: 50, borderColor: 'blue', borderWidth: 2, marginRight: 10, justifyContent: 'center', alignItems: 'center' }} >
+                            <TouchableOpacity onPress={handleDeleteTimer} style={{ width: 100, height: 50, borderColor: 'blue', borderWidth: 2, marginRight: 0, justifyContent: 'center', alignItems: 'center' }} >
                                 <Text>
                                     Delete
                                 </Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={{ width: 100, height: 50, borderColor: 'orange', borderWidth: 2, marginLeft: 10, justifyContent: 'center', alignItems: 'center' }} >
+                            <TouchableOpacity style={{ width: 100, height: 50, borderColor: 'orange', borderWidth: 2, marginLeft: 0, justifyContent: 'center', alignItems: 'center' }} >
                                 <Text>
                                     Edit
                                 </Text>
                             </TouchableOpacity>
                         </View>
+                        <TouchableOpacity onPress={handleClick} style={{ width: "100%", height: 50, borderColor: 'blue', borderWidth: 2, justifyContent: 'center', alignItems: 'center' }} >
+                                <Text>
+                                    { intervalId===0? "Start" : "Stop"}
+                                </Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
             }

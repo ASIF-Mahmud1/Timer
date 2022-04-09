@@ -19,7 +19,7 @@ const AddTimer = () => {
     }
     return (
 
-            <TouchableOpacity onPress={handleAddTimer} style={{borderColor:'crimson', borderWidth:2,width:100,height:50, alignItems:'center', justifyContent:'center' , borderRadius:15 }}>
+            <TouchableOpacity onPress={handleAddTimer} style={{marginTop:40, borderColor:'crimson', borderWidth:2,width:100,height:50, alignItems:'center', justifyContent:'center' , borderRadius:15 }}>
                 <Text style={{fontSize:30}} >+</Text>
             </TouchableOpacity>
 
