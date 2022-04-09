@@ -8,7 +8,7 @@ class Timer {
     this.project= project
     this.time = 0;
     this.isRunning = false;
-    this.created=false
+    this.created=null
   }
 }
 export const timerSlice = createSlice({  
@@ -41,6 +41,7 @@ export const timerSlice = createSlice({
 
     createTimer: (state,action) =>{
       
+      console.log(action.payload.created);
         let duplicate= state.timerList.map((item)=>{
           if(item.id===action.payload.id)
           {

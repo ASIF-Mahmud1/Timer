@@ -16,8 +16,21 @@ const  SingleTimer = ({ details }) => {
     const handleChange = (key, value) => {
         setValues({ ...values, [key]: value })
     }
+    const handleCreateTimer = () => {
+        console.log(values);
+        dispatch(createTimer({ ...values, created: 'create' }))
+    }
+
+    // const handleUpdateTimer = () => {
+       
+    //     dispatch(createTimer({ ...values, created: 'create' }))
+    //     handleClick()
+    // }
+
     const handleEditTimer = () => {
-        dispatch(createTimer({ ...values, created: true }))
+     
+        dispatch(createTimer({ ...values, created: 'edit' }))
+        removeSubsription()
     }
 
     const handleDeleteTimer = () => {
@@ -35,7 +48,7 @@ const  SingleTimer = ({ details }) => {
         const newIntervalId = setInterval(() => {
 
             setCount((count)=> count+1)
-        }, 1);
+        }, 1000);
 
         setIntervalId(newIntervalId)
 
@@ -48,6 +61,11 @@ const  SingleTimer = ({ details }) => {
         setIntervalId(0)
     }
 
+
+    const handleCancel=()=>{
+        dispatch(createTimer({ ...details, created: 'created' }))
+    }
+
     const hour= Math.floor(count/(60*60))
     const min= Math.floor((count/(60))%60)
     const sec= count%60
@@ -57,13 +75,15 @@ const  SingleTimer = ({ details }) => {
         <View style={{marginVertical:20,padding:30,borderRadius:15, backgroundColor:'white'}}>
 
             {
-                details.created === false ?
+                (details.created === null || details.created ==='edit') ?
                     <View>
                         <TextInput placeholder='Enter Title' value={values.title} onChangeText={(val) => { handleChange("title", val) }} />
                         <TextInput placeholder='Enter Project' value={values.project} onChangeText={(val) => { handleChange("project", val) }} />
-
-                        <View style={{ flexDirection: 'row' }}>
-                            <TouchableOpacity onPress={handleEditTimer} style={{ width: 100, height: 50, borderColor: 'green', borderWidth: 2, marginHorizontal: 10, justifyContent: 'center', alignItems: 'center' }} >
+                      
+                        {
+                            details.created===null && 
+                            <View style={{ flexDirection: 'row' }}>
+                            <TouchableOpacity onPress={handleCreateTimer} style={{ width: 100, height: 50, borderColor: 'green', borderWidth: 2, marginHorizontal: 10, justifyContent: 'center', alignItems: 'center' }} >
                                 <Text>
                                     Create
                                 </Text>
@@ -74,7 +94,29 @@ const  SingleTimer = ({ details }) => {
                                     Cancel
                                 </Text>
                             </TouchableOpacity>
-                        </View>
+                            </View>
+                        }
+                        
+
+                        {
+                            details.created==="edit" && 
+                           
+                            <View style={{ flexDirection: 'row' }}>
+                            <TouchableOpacity onPress={handleCreateTimer} style={{ width: 100, height: 50, borderColor: 'green', borderWidth: 2, marginHorizontal: 10, justifyContent: 'center', alignItems: 'center' }} >
+                                <Text>
+                                    Update
+                                </Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity onPress={handleCancel} style={{ width: 100, height: 50, borderColor: 'red', borderWidth: 2, marginHorizontal: 10, justifyContent: 'center', alignItems: 'center' }}>
+                                <Text>
+                                    Cancel
+                                </Text>
+                            </TouchableOpacity>
+                            </View>
+                        }
+
+                      
                     </View>
                     :
                     <View>
@@ -90,7 +132,7 @@ const  SingleTimer = ({ details }) => {
                                     Delete
                                 </Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={{ width: 100, height: 50, borderColor: 'orange', borderWidth: 2, marginLeft: 0, justifyContent: 'center', alignItems: 'center' }} >
+                            <TouchableOpacity onPress={handleEditTimer} style={{ width: 100, height: 50, borderColor: 'orange', borderWidth: 2, marginLeft: 0, justifyContent: 'center', alignItems: 'center' }} >
                                 <Text>
                                     Edit
                                 </Text>
