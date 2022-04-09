@@ -10,8 +10,11 @@ const AddTimer = () => {
 
     //console.log(timerList);
     const handleAddTimer = () => {
-        console.log("Here ");
-        dispatch(addTimer(<SingleTimer/>))
+       
+        let temp ={
+            title:'', project:''
+        }
+        dispatch(addTimer(temp))
       // 
     }
     return (
