@@ -44,22 +44,30 @@ const SingleTimer = ({ details }) => {
                     </View>
                     :
                     <View>
+                      
                         <Text>Title: {details.title}</Text>
                         <Text>Project: {details.project}</Text>
                         <Text>Timer</Text>
-                        <View style={{ flexDirection: 'row' }}>
-                            <TouchableOpacity style={{ width: 100, height: 50, borderColor: 'blue', borderWidth: 2, marginHorizontal: 10, justifyContent: 'center', alignItems: 'center' }} >
+                        <View style={{justifyContent:'center',borderWidth:2}}> 
+                        <TouchableOpacity style={{ width: "100%", height: 50, borderColor: 'blue', borderWidth: 2, justifyContent: 'center', alignItems: 'center' }} >
+                                <Text>
+                                    Start
+                                </Text>
+                            </TouchableOpacity>
+                        <View style={{ flexDirection: 'row', justifyContent:'center' }}>
+                            
+                            <TouchableOpacity style={{ width: 100, height: 50, borderColor: 'blue', borderWidth: 2, marginRight: 10, justifyContent: 'center', alignItems: 'center' }} >
                                 <Text>
                                     Delete
                                 </Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={{ width: 100, height: 50, borderColor: 'orange', borderWidth: 2, marginHorizontal: 10, justifyContent: 'center', alignItems: 'center' }} >
+                            <TouchableOpacity style={{ width: 100, height: 50, borderColor: 'orange', borderWidth: 2, marginLeft: 10, justifyContent: 'center', alignItems: 'center' }} >
                                 <Text>
                                     Edit
                                 </Text>
                             </TouchableOpacity>
                         </View>
-
+                        </View>
                     </View>
             }
 
