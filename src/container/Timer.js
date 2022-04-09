@@ -7,9 +7,7 @@ import AddTimer from '../component/timer/AddTimer';
 const Timer = () => {
     const timerList = useSelector(state => state.timer.timerList)
     console.log("TimerList is ",timerList);
-    const handleAddTimer = () => {
-        console.log();
-    }
+
     return (
         <View style={{ alignItems: 'center' }}>
             <TimerList timerList={timerList} />

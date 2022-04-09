@@ -16,15 +16,31 @@ export const timerSlice = createSlice({
     timerList:[]
   },
   reducers: {
-
     addTimer:  (state, action) => {
       console.log("slice",action.payload);
       state.timerList = [...state.timerList, new Timer(action.payload.title, action.payload.project )]
-       
-       },
+    },
+    editTimer: (state,action) =>{
+    //  console.log(action.payload);
+      let duplicate= state.timerList.map((item)=>{
+        if(item.id===action.payload.id)
+        {
+             return {
+               ...action.payload
+             }
+        }
+        else 
+        {
+          return item
+        }
+      })
+     
+    //  const timer= [...state.timerList.splice((item)=>item.id= action.payload.id )]
+      state.timerList= [... duplicate]
+    }
   }
 })
 
-export const { addTimer } = timerSlice.actions
+export const { addTimer, editTimer } = timerSlice.actions
 
 export default timerSlice.reducer
