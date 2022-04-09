@@ -22,13 +22,13 @@ const  SingleTimer = ({ details }) => {
 
     const handleDeleteTimer = () => {
         dispatch(deleteTimer(values))
+        removeSubsription()
     }
 
    const  handleClick = () => {
        if(intervalId)  // clear interval 
        {
-         clearInterval(intervalId);
-         setIntervalId(0)
+         removeSubsription()
        }
        else   // crete setInterval
        {
@@ -41,6 +41,11 @@ const  SingleTimer = ({ details }) => {
 
        }
 
+    }
+
+    const removeSubsription=()=>{
+        clearInterval(intervalId);
+        setIntervalId(0)
     }
     return (
         <View>
@@ -79,7 +84,7 @@ const  SingleTimer = ({ details }) => {
                             </TouchableOpacity>
                         <View style={{ flexDirection: 'row', justifyContent:'center' }}>
                             
-                            <TouchableOpacity style={{ width: 100, height: 50, borderColor: 'blue', borderWidth: 2, marginRight: 10, justifyContent: 'center', alignItems: 'center' }} >
+                            <TouchableOpacity onPress={handleDeleteTimer} style={{ width: 100, height: 50, borderColor: 'blue', borderWidth: 2, marginRight: 10, justifyContent: 'center', alignItems: 'center' }} >
                                 <Text>
                                     Delete
                                 </Text>
