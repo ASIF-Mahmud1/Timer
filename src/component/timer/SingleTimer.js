@@ -3,10 +3,14 @@ import { Text, View, ScrollView, TouchableOpacity, TextInput } from 'react-nativ
 import { useSelector, useDispatch } from 'react-redux'
 import { createTimer, editTimer, deleteTimer } from '../../stores/features/timer.slice'
 
-const SingleTimer = ({ details }) => {
+const  SingleTimer = ({ details }) => {
     const [values, setValues] = useState({
         ...details
     })
+
+    const [count, setCount]= useState(0)
+    const [intervalId, setIntervalId]= useState(0)
+
     const dispatch = useDispatch()
 
     const handleChange = (key, value) => {
@@ -18,6 +22,25 @@ const SingleTimer = ({ details }) => {
 
     const handleDeleteTimer = () => {
         dispatch(deleteTimer(values))
+    }
+
+   const  handleClick = () => {
+       if(intervalId)  // clear interval 
+       {
+         clearInterval(intervalId);
+         setIntervalId(0)
+       }
+       else   // crete setInterval
+       {
+        const newIntervalId = setInterval(() => {
+
+            setCount((count)=> count+1)
+        }, 1000);
+
+        setIntervalId(newIntervalId)
+
+       }
+
     }
     return (
         <View>
@@ -47,11 +70,11 @@ const SingleTimer = ({ details }) => {
                       
                         <Text>Title: {details.title}</Text>
                         <Text>Project: {details.project}</Text>
-                        <Text>Timer</Text>
+                        <Text>Timer{count}</Text>
                         <View style={{justifyContent:'center',borderWidth:2}}> 
-                        <TouchableOpacity style={{ width: "100%", height: 50, borderColor: 'blue', borderWidth: 2, justifyContent: 'center', alignItems: 'center' }} >
+                        <TouchableOpacity onPress={handleClick} style={{ width: "100%", height: 50, borderColor: 'blue', borderWidth: 2, justifyContent: 'center', alignItems: 'center' }} >
                                 <Text>
-                                    Start
+                                    { intervalId===0? "Start" : "Stop"}
                                 </Text>
                             </TouchableOpacity>
                         <View style={{ flexDirection: 'row', justifyContent:'center' }}>
@@ -77,6 +100,6 @@ const SingleTimer = ({ details }) => {
     );
 };
 
+export default SingleTimer
 
 
-export default SingleTimer;
