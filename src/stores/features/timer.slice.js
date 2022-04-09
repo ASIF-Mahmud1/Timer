@@ -8,6 +8,7 @@ class Timer {
     this.project= project
     this.time = 0;
     this.isRunning = false;
+    this.created=false
   }
 }
 export const timerSlice = createSlice({  
@@ -17,11 +18,11 @@ export const timerSlice = createSlice({
   },
   reducers: {
     addTimer:  (state, action) => {
-      console.log("slice",action.payload);
+   
       state.timerList = [...state.timerList, new Timer(action.payload.title, action.payload.project )]
     },
     editTimer: (state,action) =>{
-    //  console.log(action.payload);
+   
       let duplicate= state.timerList.map((item)=>{
         if(item.id===action.payload.id)
         {
@@ -35,12 +36,37 @@ export const timerSlice = createSlice({
         }
       })
      
-    //  const timer= [...state.timerList.splice((item)=>item.id= action.payload.id )]
       state.timerList= [... duplicate]
-    }
+    },
+
+    createTimer: (state,action) =>{
+      
+        let duplicate= state.timerList.map((item)=>{
+          if(item.id===action.payload.id)
+          {
+               return {
+                 ...action.payload
+               }
+          }
+          else 
+          {
+            return item
+          }
+        })
+       
+        state.timerList= [... duplicate]
+      },
+
+    deleteTimer: (state,action) =>{
+ 
+        let duplicate= state.timerList.filter((item)=>{ return item.id !== action.payload.id })
+       
+        state.timerList= [... duplicate]
+      },
+    
   }
 })
 
-export const { addTimer, editTimer } = timerSlice.actions
+export const { addTimer,createTimer, editTimer ,deleteTimer} = timerSlice.actions
 
 export default timerSlice.reducer

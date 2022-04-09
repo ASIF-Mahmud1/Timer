@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity,ScrollView } from 'react-native';
 import { useSelector } from 'react-redux'
 import { addTimer } from '../stores/features/timer.slice'
 import TimerList from '../component/timer/TimerList';
@@ -9,11 +9,11 @@ const Timer = () => {
     console.log("TimerList is ",timerList);
 
     return (
-        <View style={{ alignItems: 'center' }}>
+        <ScrollView contentContainerStyle= {{ alignItems: 'center' }}>
             <TimerList timerList={timerList} />
              <AddTimer /> 
 
-        </View>
+        </ScrollView>
 
 
     );

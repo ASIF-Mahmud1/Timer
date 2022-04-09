@@ -5,13 +5,13 @@ import SingleTimer from './SingleTimer';
 const TimerList= ({timerList}) => {
 
   return (
-     <ScrollView>
+     <View>
        {
            timerList.map((item )=>{
                return <SingleTimer key ={item.id } details={item} />
            })
        }
-     </ScrollView>
+     </View>
   );
 };
 
